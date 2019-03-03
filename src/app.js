@@ -368,6 +368,7 @@ freezer.on('/lol-champ-select/v1/session:Update', (data) => {
 	var champions = freezer.get().championsinfo;
 	var champion = Object.keys(champions).find((el) => champions[el].key == action.championId);
 	console.log(champion)
+	if(champion === freezer.get().current.champion) return;
 	// if(champion !== freezer.get().current.champion) freezer.get().tab.set("active", "local"); // Avoid request spamming
 	freezer.emit('champion:choose', champion);
 });
